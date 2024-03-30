@@ -8,15 +8,28 @@ use App\Models\Provider;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ProviderResource;
 use App\Http\Resources\V1\ProviderCollection;
+use Illuminate\Http\Request;
+use App\Filters\V1\ProviderFilter;
 
 class ProviderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ProviderCollection(Provider::all());
+
+        $filter = new ProviderFilter();
+        $queryItems = $filter->transform($request);
+
+        $includeProducts = $request->query("includeProducts");
+
+        $providers = Provider::where($queryItems);
+        if($includeProducts){
+            $providers = $providers->with("products");
+        }
+
+        return new ProviderCollection($providers->paginate()->appends($request->query()));
     }
 
     /**
@@ -40,6 +53,13 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
+        $includeProducts = request()->query("includeProducts");
+
+        if($includeProducts){
+
+            return new ProviderResource($provider->loadMissing("products"));
+        }
+
         return new ProviderResource($provider);
     }
 
