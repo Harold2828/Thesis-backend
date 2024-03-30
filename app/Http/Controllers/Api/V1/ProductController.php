@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSpecificationRequest;
-use App\Http\Requests\UpdateSpecificationRequest;
-use App\Models\Specification;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
+use App\Http\Controllers\Controller;
 
-class SpecificationController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class SpecificationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSpecificationRequest $request)
+    public function store(StoreProductRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class SpecificationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Specification $specification)
+    public function show(Product $product)
     {
         //
     }
@@ -43,7 +44,7 @@ class SpecificationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Specification $specification)
+    public function edit(Product $product)
     {
         //
     }
@@ -51,7 +52,7 @@ class SpecificationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSpecificationRequest $request, Specification $specification)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         //
     }
@@ -59,7 +60,7 @@ class SpecificationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Specification $specification)
+    public function destroy(Product $product)
     {
         //
     }

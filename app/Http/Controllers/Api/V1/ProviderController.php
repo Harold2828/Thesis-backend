@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\StoreProviderRequest;
 use App\Http\Requests\UpdateProviderRequest;
 use App\Models\Provider;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ProviderResource;
+use App\Http\Resources\V1\ProviderCollection;
 
 class ProviderController extends Controller
 {
@@ -13,7 +16,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        return new ProviderCollection(Provider::all());
     }
 
     /**
@@ -37,7 +40,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        //
+        return new ProviderResource($provider);
     }
 
     /**

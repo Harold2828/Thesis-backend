@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreProductDetailRequest;
-use App\Http\Requests\UpdateProductDetailRequest;
-use App\Models\ProductDetail;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Project;
+use App\Http\Controllers\Controller;
 
-class ProductDetailController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class ProductDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductDetailRequest $request)
+    public function store(StoreProjectRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class ProductDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProductDetail $productDetail)
+    public function show(Project $project)
     {
         //
     }
@@ -43,7 +44,7 @@ class ProductDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProductDetail $productDetail)
+    public function edit(Project $project)
     {
         //
     }
@@ -51,7 +52,7 @@ class ProductDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductDetailRequest $request, ProductDetail $productDetail)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         //
     }
@@ -59,7 +60,7 @@ class ProductDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProductDetail $productDetail)
+    public function destroy(Project $project)
     {
         //
     }
