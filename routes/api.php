@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\ProductDetailController;
 use App\Http\Controllers\Api\V1\ProviderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,4 +29,5 @@ $attributes = [
 Route::group($attributes, function(){
     Route::apiResource("providers", ProviderController::class);
     Route::apiResource("products", ProductController::class);
+    Route::apiResource("product_details", ProductDetailController::class);
 });
