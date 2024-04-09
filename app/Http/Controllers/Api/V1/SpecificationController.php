@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Filters\V1\SpecificationFilter;
 use App\Http\Requests\StoreSpecificationRequest;
 use App\Http\Requests\UpdateSpecificationRequest;
 use App\Models\Specification;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SpecificationCollection;
+use App\Http\Resources\SpecificationResource;
+use Illuminate\Http\Request;
 
 class SpecificationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = new SpecificationFilter();
+        $queryItems = $filter->transform($request);
+
+        $providers = Specification::where($queryItems);
+
+        return new SpecificationCollection($providers->paginate()->appends($request->query()));
     }
 
     /**
@@ -38,7 +47,8 @@ class SpecificationController extends Controller
      */
     public function show(Specification $specification)
     {
-        //
+        
+        return new SpecificationResource($specification);
     }
 
     /**
