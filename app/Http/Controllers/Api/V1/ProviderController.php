@@ -39,13 +39,13 @@ class ProviderController extends Controller
     {
         //
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreProviderRequest $request)
     {
-        //
+        return new ProviderResource(Provider::create($request->all()));
     }
 
     /**
