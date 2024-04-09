@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,7 +17,8 @@ class SpecificationResource extends JsonResource
         return [
             "id"=>$this->id,
             "category"=>$this->category,
-            "name"=>$this->name
+            "name"=>$this->name,
+            "observation"=>$this->observation
         ];
     }
 }

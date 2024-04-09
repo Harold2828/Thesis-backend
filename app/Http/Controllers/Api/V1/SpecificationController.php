@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Filters\V1\SpecificationFilter;
-use App\Http\Requests\StoreSpecificationRequest;
+use App\Http\Requests\V1\StoreSpecificationRequest;
 use App\Http\Requests\UpdateSpecificationRequest;
 use App\Models\Specification;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SpecificationCollection;
-use App\Http\Resources\SpecificationResource;
+use App\Http\Resources\V1\SpecificationCollection;
+use App\Http\Resources\V1\SpecificationResource;
 use Illuminate\Http\Request;
 
 class SpecificationController extends Controller
@@ -39,7 +39,7 @@ class SpecificationController extends Controller
      */
     public function store(StoreSpecificationRequest $request)
     {
-        //
+        return new SpecificationResource(Specification::create($request->all()));
     }
 
     /**
