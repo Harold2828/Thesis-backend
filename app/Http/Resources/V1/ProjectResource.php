@@ -20,7 +20,7 @@ class ProjectResource extends JsonResource
             "longitude"=>$this->longitude,
             "name"=>$this->name,
             "description"=>$this->description,
-            "details"=>ProjectDetailResource::collection($this->whenLoaded("product_details"))
+            "details"=>ProjectDetailResource::collection($this->whenLoaded("details"))
         ];
     }
 }

@@ -17,7 +17,7 @@ class Project extends Model
         "description"
     ];
 
-    public function project_details(){
+    public function details(){
         return $this->hasMany(ProjectDetail::class);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectDetailRequest;
 use App\Http\Requests\UpdateProjectDetailRequest;
 use App\Models\ProjectDetail;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ProjectDetailResource;
 
 class ProjectDetailController extends Controller
 {
@@ -30,7 +31,7 @@ class ProjectDetailController extends Controller
      */
     public function store(StoreProjectDetailRequest $request)
     {
-        //
+        return new ProjectDetailResource(ProjectDetail::create($request->all()));
     }
 
     /**

@@ -21,17 +21,15 @@ class ProjectController extends Controller
     {
         $filter = new ProjectFilter();
         $queryItems = $filter->transform($request);
+        $projects = Project::where($queryItems);
 
-        $includeDetails = $request->query("includeDetails");
-
-        $project = Project::where($queryItems);
-
+        $includeDetails = $request->query('includeDetails');
         if($includeDetails){
-            $project = $project->with("details");
+
+            $projects->with("details");
         }
 
-        return new ProjectCollection($project->paginate()->appends($request->query));
-
+        return new ProjectCollection($projects->paginate()->appends($request->query()));
     }
 
     /**
@@ -47,7 +45,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        return new ProjectResource(Project::create($request->all()));
     }
 
     /**
