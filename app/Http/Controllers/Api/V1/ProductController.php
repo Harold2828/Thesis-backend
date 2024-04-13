@@ -56,7 +56,7 @@ class ProductController extends Controller
 
         if($includeDetails){
 
-            return new ProductResource($product->load_missing("details"));
+            return new ProductResource($product->loadMissing("details"));
         }
 
         return new ProductResource($product);

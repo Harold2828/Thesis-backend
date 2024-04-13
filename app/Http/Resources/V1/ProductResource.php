@@ -21,7 +21,7 @@ class ProductResource extends JsonResource
             "model" => $this->model,
             "providerId" => $this->provider_id,
             "description" => $this->description,
-            "details"=>ProductDetailResource::collection($this->whenLoaded("product_details"))
+            "details"=>ProductDetailResource::collection($this->whenLoaded("details"))
         ];
     }
 }

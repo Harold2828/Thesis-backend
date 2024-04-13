@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Filters\V1\ProductDetailFilter;
-use App\Http\Requests\StoreProductDetailRequest;
+use App\Http\Requests\V1\StoreProductDetailRequest;
 use App\Http\Requests\UpdateProductDetailRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ProductDetailCollection;
@@ -37,7 +37,7 @@ class ProductDetailController extends Controller
      */
     public function store(StoreProductDetailRequest $request)
     {
-        //
+        return new ProductDetailResource(ProductDetail::create($request->all()));
     }
 
     /**
