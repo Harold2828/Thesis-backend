@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreProjectDetailRequest;
+use App\Filters\V1\ProjectDetailFilter;
+use App\Http\Requests\V1\StoreProjectDetailRequest;
 use App\Http\Requests\UpdateProjectDetailRequest;
 use App\Models\ProjectDetail;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ProjectDetailCollection;
+use App\Http\Resources\V1\ProjectDetailResource;
+use App\Http\Resources\V1\ProjectResource;
+use Illuminate\Http\Request;
 
 class ProjectDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = new ProjectDetailFilter();
+        $queryItems = $filter->transform($request);
+        $projects = ProjectDetail::where($queryItems);
+        return new ProjectDetailCollection($projects->paginate()->appends($request->query()));
     }
 
     /**
@@ -30,7 +38,7 @@ class ProjectDetailController extends Controller
      */
     public function store(StoreProjectDetailRequest $request)
     {
-        //
+        return new ProjectDetailResource(ProjectDetail::create($request->all()));
     }
 
     /**
@@ -38,7 +46,7 @@ class ProjectDetailController extends Controller
      */
     public function show(ProjectDetail $projectDetail)
     {
-        //
+        return new ProjectResource($projectDetail);
     }
 
     /**

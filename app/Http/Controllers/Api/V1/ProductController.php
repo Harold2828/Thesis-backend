@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\V1\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Filters\V1\ProductFilter;
 use App\Http\Resources\V1\ProductCollection;
-
+use App\Http\Resources\V1\ProductResource;
 
 class ProductController extends Controller
 {
@@ -19,17 +19,16 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $filter = new ProductFilter();
-
         $queryItems = $filter->transform($request);
+        $products = Product::where($queryItems);
 
-        if(count($queryItems) == 0){
+        $includeDetails = $request->query('includeDetails');
+        if($includeDetails){
 
-            return new ProductCollection(Product::paginate());
-        }else{
-
-            $products = Product::where($queryItems)->paginate();
-            return new ProductCollection($products->appends($request->query()));
+            $products->with("details");
         }
+
+        return new ProductCollection($products->paginate()->appends($request->query()));
     }
 
     /**
@@ -45,7 +44,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        return new ProductResource(Product::create($request->all()));
     }
 
     /**
@@ -53,7 +52,14 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $includeDetails = request()->query("includeDetails");
+
+        if($includeDetails){
+
+            return new ProductResource($product->loadMissing("details"));
+        }
+
+        return new ProductResource($product);
     }
 
     /**

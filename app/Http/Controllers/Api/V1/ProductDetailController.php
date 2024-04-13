@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreProductDetailRequest;
+use App\Filters\V1\ProductDetailFilter;
+use App\Http\Requests\V1\StoreProductDetailRequest;
 use App\Http\Requests\UpdateProductDetailRequest;
-use App\Models\ProductDetail;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\ProductDetailCollection;
+use App\Http\Resources\V1\ProductDetailResource;
+use App\Models\ProductDetail;
+use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $filter = new ProductDetailFilter();
+        $queryItems = $filter->transform($request);
+        $productDetails = ProductDetail::where($queryItems);
+        return new ProductDetailCollection($productDetails->paginate()->appends($request->query()));
     }
 
     /**
@@ -30,7 +37,7 @@ class ProductDetailController extends Controller
      */
     public function store(StoreProductDetailRequest $request)
     {
-        //
+        return new ProductDetailResource(ProductDetail::create($request->all()));
     }
 
     /**
@@ -38,7 +45,7 @@ class ProductDetailController extends Controller
      */
     public function show(ProductDetail $productDetail)
     {
-        //
+        return new ProductDetailResource($productDetail);
     }
 
     /**

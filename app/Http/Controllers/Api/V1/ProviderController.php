@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreProviderRequest;
+use App\Http\Requests\V1\StoreProviderRequest;
 use App\Http\Requests\UpdateProviderRequest;
 use App\Models\Provider;
 use App\Http\Controllers\Controller;
@@ -39,13 +39,13 @@ class ProviderController extends Controller
     {
         //
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreProviderRequest $request)
     {
-        //
+        return new ProviderResource(Provider::create($request->all()));
     }
 
     /**

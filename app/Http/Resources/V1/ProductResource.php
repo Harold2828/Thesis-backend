@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\V1;
 
+use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,8 @@ class ProductResource extends JsonResource
             "productType" => $this->product_type,
             "model" => $this->model,
             "providerId" => $this->provider_id,
-            "description" => $this->description
+            "description" => $this->description,
+            "details"=>ProductDetailResource::collection($this->whenLoaded("details"))
         ];
     }
 }

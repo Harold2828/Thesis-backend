@@ -12,7 +12,8 @@ class Specification extends Model
     protected $fillable = [
         "name",
         "category",
-        "alive"
+        "alive",
+        "observation"
     ];
 
     public function project_details(){
