@@ -22,8 +22,7 @@ class StoreProviderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>["required"],
-            "country"=>["required"]
+            //
         ];
     }
 }

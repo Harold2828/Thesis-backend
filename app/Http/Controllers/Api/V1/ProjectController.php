@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Filters\V1\ProductFilter;
-use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\V1\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Http\Controllers\Controller;

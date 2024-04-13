@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\StoreProviderRequest;
+use App\Http\Requests\V1\StoreProviderRequest;
 use App\Http\Requests\UpdateProviderRequest;
 use App\Models\Provider;
 use App\Http\Controllers\Controller;
